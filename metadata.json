@@ -1,0 +1,6 @@
+{
+  "name": "Bloomora – Grow Your Happy Space",
+  "description": "Premium botanical platform for plant care, indoor gardening, and seasonal inspiration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
