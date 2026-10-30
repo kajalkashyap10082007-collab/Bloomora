@@ -23,7 +23,7 @@ export const OutdoorPlants = () => {
                 </p>
              </div>
              <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
-                <img src="/src/assets/images/outdoor_plants_hero_1793379949011.jpg" alt="Outdoor Plants" className="w-full h-full object-cover" />
+                <img src="/images/outdoor_plants_hero_1793379949011.jpg" alt="Outdoor Plants" className="w-full h-full object-cover" />
              </div>
            </div>
         </Container>

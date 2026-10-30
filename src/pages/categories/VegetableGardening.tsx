@@ -23,7 +23,7 @@ export const VegetableGardening = () => {
                 </p>
              </div>
              <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
-                <img src="/src/assets/images/vegetable_gardening_hero_1793379947727.jpg" alt="Vegetable Garden" className="w-full h-full object-cover" />
+                <img src="/images/vegetable_gardening_hero_1793379947727.jpg" alt="Vegetable Garden" className="w-full h-full object-cover" />
              </div>
            </div>
         </Container>

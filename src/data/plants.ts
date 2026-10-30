@@ -30,7 +30,7 @@ export const plants: Plant[] = [
     water: 'low',
     difficulty: 'beginner',
     description: 'One of the most resilient indoor plants, known for its architectural leaves and ability to thrive in low light.',
-    image: '/src/assets/images/plant_snake_plant_luxury_1793379117019.jpg',
+    image: '/images/plant_snake_plant_luxury_1793379117019.jpg',
     slug: 'snake-plant',
     care: {
       sunlight: 'Thrives in low to bright indirect light. Can even handle some direct sun.',
@@ -50,7 +50,7 @@ export const plants: Plant[] = [
     water: 'medium',
     difficulty: 'beginner',
     description: 'A popular tropical plant with large, iconic fenestrated leaves that bring a jungle vibe to any space.',
-    image: '/src/assets/images/plant_monstera_deliciosa_1793380569079.jpg',
+    image: '/images/plant_monstera_deliciosa_1793380569079.jpg',
     slug: 'monstera-deliciosa',
     care: {
       sunlight: 'Bright indirect light is best. Too much sun can burn the leaves.',
@@ -70,7 +70,7 @@ export const plants: Plant[] = [
     water: 'low',
     difficulty: 'intermediate',
     description: 'A vibrant climbing shrub known for its colorful papery bracts. Ideal for sunny balconies and terraces in India.',
-    image: '/src/assets/images/plant_bougainvillea_1793380565116.jpg',
+    image: '/images/plant_bougainvillea_1793380565116.jpg',
     slug: 'bougainvillea',
     care: {
       sunlight: 'Needs full sun (at least 6 hours) to bloom profusely.',
@@ -90,7 +90,7 @@ export const plants: Plant[] = [
     water: 'low',
     difficulty: 'beginner',
     description: 'A succulent known for its medicinal properties and ease of care.',
-    image: '/src/assets/images/plant_aloe_vera_1793380565672.jpg',
+    image: '/images/plant_aloe_vera_1793380565672.jpg',
     slug: 'aloe-vera',
     care: {
       sunlight: 'Bright direct or indirect light.',
@@ -110,7 +110,7 @@ export const plants: Plant[] = [
     water: 'medium',
     difficulty: 'beginner',
     description: 'A fast-growing vine that is incredibly easy to grow and very popular in Indian households.',
-    image: '/src/assets/images/plant_pothos_1793380565764.jpg',
+    image: '/images/plant_pothos_1793380565764.jpg',
     slug: 'pothos',
     care: {
       sunlight: 'Low to bright indirect light.',
@@ -130,7 +130,7 @@ export const plants: Plant[] = [
     water: 'medium',
     difficulty: 'beginner',
     description: 'Elegant white blooms and dark green leaves. Known for "telling" you when it needs water by drooping.',
-    image: '/src/assets/images/plant_peace_lily_1793380566704.jpg',
+    image: '/images/plant_peace_lily_1793380566704.jpg',
     slug: 'peace-lily',
     care: {
       sunlight: 'Low to medium indirect light.',
@@ -150,7 +150,7 @@ export const plants: Plant[] = [
     water: 'medium',
     difficulty: 'intermediate',
     description: 'A beautiful feathery palm that adds a tropical touch and acts as a natural humidifier.',
-    image: '/src/assets/images/plant_areca_palm_1793380567326.jpg',
+    image: '/images/plant_areca_palm_1793380567326.jpg',
     slug: 'areca-palm',
     care: {
       sunlight: 'Bright indirect light. Direct sun can yellow the leaves.',
@@ -170,7 +170,7 @@ export const plants: Plant[] = [
     water: 'low',
     difficulty: 'beginner',
     description: 'A miniature tree-like succulent that is said to bring good luck and prosperity.',
-    image: '/src/assets/images/plant_jade_plant_1793380566814.jpg',
+    image: '/images/plant_jade_plant_1793380566814.jpg',
     slug: 'jade-plant',
     care: {
       sunlight: 'Full sun to bright indirect light.',
@@ -190,7 +190,7 @@ export const plants: Plant[] = [
     water: 'high',
     difficulty: 'intermediate',
     description: 'Classic Indian garden plant with large, colorful trumpet-shaped flowers.',
-    image: '/src/assets/images/plant_hibiscus_1793380567170.jpg',
+    image: '/images/plant_hibiscus_1793380567170.jpg',
     slug: 'hibiscus',
     care: {
       sunlight: 'Full sun is essential for blooming.',
@@ -210,7 +210,7 @@ export const plants: Plant[] = [
     water: 'low',
     difficulty: 'beginner',
     description: 'Extremely tough plant with waxy, dark green leaves. Can survive months of neglect.',
-    image: '/src/assets/images/plant_zz_plant_1793380567970.jpg',
+    image: '/images/plant_zz_plant_1793380567970.jpg',
     slug: 'zz-plant',
     care: {
       sunlight: 'Low to bright indirect light. Very adaptable.',
@@ -230,7 +230,7 @@ export const plants: Plant[] = [
     water: 'medium',
     difficulty: 'intermediate',
     description: 'A must-have for Indian kitchens. An aromatic small tree that thrives in warm climates.',
-    image: '/src/assets/images/plant_curry_leaf_1793380568112.jpg',
+    image: '/images/plant_curry_leaf_1793380568112.jpg',
     slug: 'curry-leaf',
     care: {
       sunlight: 'Full sun to partial shade.',
@@ -250,7 +250,7 @@ export const plants: Plant[] = [
     water: 'high',
     difficulty: 'beginner',
     description: 'Rewarding to grow in pots. Provides fresh, organic tomatoes for your home.',
-    image: '/src/assets/images/blog_tomato_gardening_1793379117970.jpg',
+    image: '/images/blog_tomato_gardening_1793379117970.jpg',
     slug: 'tomato',
     care: {
       sunlight: 'At least 6-8 hours of direct sun.',

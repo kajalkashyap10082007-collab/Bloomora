@@ -21,7 +21,7 @@ export const SeasonalGardening = () => {
                 </p>
              </div>
              <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
-                <img src="/src/assets/images/seasonal_gardening_hero_1793379948110.jpg" alt="Seasonal Gardening" className="w-full h-full object-cover" />
+                <img src="/images/seasonal_gardening_hero_1793379948110.jpg" alt="Seasonal Gardening" className="w-full h-full object-cover" />
              </div>
            </div>
         </Container>

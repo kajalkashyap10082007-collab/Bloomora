@@ -26,7 +26,7 @@ export const About = () => (
           <div className="lg:col-span-6">
              <div className="relative aspect-[4/5] overflow-hidden shadow-2xl">
                 <img 
-                  src="/src/assets/images/about_us_hero_1793380691031.jpg" 
+                  src="/images/about_us_hero_1793380691031.jpg" 
                   alt="Our Team" 
                   className="w-full h-full object-cover"
                 />
@@ -64,10 +64,10 @@ export const About = () => (
           </div>
           <div className="grid grid-cols-2 gap-4">
              <div className="aspect-[3/4] bg-white/5 rounded-sm overflow-hidden">
-                <img src="/src/assets/images/garden_inspiration_1_1793380691580.jpg" alt="Inspiration" className="w-full h-full object-cover opacity-50" />
+                <img src="/images/garden_inspiration_1_1793380691580.jpg" alt="Inspiration" className="w-full h-full object-cover opacity-50" />
              </div>
              <div className="aspect-[3/4] bg-white/5 rounded-sm overflow-hidden mt-12">
-                <img src="/src/assets/images/garden_inspiration_2_1793380692478.jpg" alt="Inspiration" className="w-full h-full object-cover opacity-50" />
+                <img src="/images/garden_inspiration_2_1793380692478.jpg" alt="Inspiration" className="w-full h-full object-cover opacity-50" />
              </div>
           </div>
         </div>
@@ -131,7 +131,7 @@ export const Contact = () => (
 
           <div className="lg:col-span-5 space-y-16 lg:pt-12">
              <div className="aspect-video overflow-hidden shadow-xl mb-12">
-                <img src="/src/assets/images/contact_us_hero_1793380690307.jpg" alt="Contact Us" className="w-full h-full object-cover" />
+                <img src="/images/contact_us_hero_1793380690307.jpg" alt="Contact Us" className="w-full h-full object-cover" />
              </div>
              
              <div className="space-y-8">

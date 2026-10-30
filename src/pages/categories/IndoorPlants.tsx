@@ -25,7 +25,7 @@ export const IndoorPlants = () => {
                 </p>
              </div>
              <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
-                <img src="/src/assets/images/blog_indoor_care_guide_1793379117819.jpg" alt="Indoor Plants" className="w-full h-full object-cover" />
+                <img src="/images/blog_indoor_care_guide_1793379117819.jpg" alt="Indoor Plants" className="w-full h-full object-cover" />
              </div>
            </div>
         </Container>

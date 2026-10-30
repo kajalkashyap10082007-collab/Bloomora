@@ -14,7 +14,7 @@ export const TerraceGarden = () => {
         <Container>
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
              <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
-                <img src="/src/assets/images/terrace_garden_hero_1793379948690.jpg" alt="Terrace Garden" className="w-full h-full object-cover" />
+                <img src="/images/terrace_garden_hero_1793379948690.jpg" alt="Terrace Garden" className="w-full h-full object-cover" />
              </div>
              <div>
                 <span className="inline-block text-sage font-bold tracking-[0.3em] uppercase text-[10px] mb-6">Rooftop Living</span>

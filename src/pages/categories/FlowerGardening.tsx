@@ -23,7 +23,7 @@ export const FlowerGardening = () => {
                 </p>
              </div>
              <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
-                <img src="/src/assets/images/flower_gardening_hero_1793379948427.jpg" alt="Flower Garden" className="w-full h-full object-cover" />
+                <img src="/images/flower_gardening_hero_1793379948427.jpg" alt="Flower Garden" className="w-full h-full object-cover" />
              </div>
            </div>
         </Container>
@@ -52,7 +52,7 @@ export const FlowerGardening = () => {
                     </div>
                  </div>
                  <div className="aspect-[4/5] bg-stone-100 overflow-hidden shadow-2xl">
-                    <img src="/src/assets/images/plant_hibiscus_1793380567170.jpg" alt="Hibiscus" className="w-full h-full object-cover" />
+                    <img src="/images/plant_hibiscus_1793380567170.jpg" alt="Hibiscus" className="w-full h-full object-cover" />
                  </div>
               </div>
            </div>

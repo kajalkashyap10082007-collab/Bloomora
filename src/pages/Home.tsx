@@ -53,7 +53,7 @@ export const Home = () => {
                 className="relative aspect-[4/5] lg:aspect-square overflow-hidden shadow-2xl"
               >
                 <img 
-                  src="/src/assets/images/hero_botanical_garden_1793379116515.jpg" 
+                  src="/images/hero_botanical_garden_1793379116515.jpg" 
                   alt="Botanical Garden"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
@@ -123,7 +123,7 @@ export const Home = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-[600px]">
             <div className="lg:col-span-7 relative group overflow-hidden">
-              <img src="/src/assets/images/garden_inspiration_1_1793380691580.jpg" alt="Minimalist Garden" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+              <img src="/images/garden_inspiration_1_1793380691580.jpg" alt="Minimalist Garden" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8">
                 <h4 className="text-2xl font-serif font-bold">The Minimalist Retreat</h4>
@@ -132,14 +132,14 @@ export const Home = () => {
             </div>
             <div className="lg:col-span-5 grid grid-rows-2 gap-8">
               <div className="relative group overflow-hidden">
-                <img src="/src/assets/images/garden_inspiration_2_1793380692478.jpg" alt="Cottage Path" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                <img src="/images/garden_inspiration_2_1793380692478.jpg" alt="Cottage Path" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 text-sm">
                   <h4 className="font-serif font-bold">Wildflower Paths</h4>
                 </div>
               </div>
               <div className="relative group overflow-hidden">
-                <img src="/src/assets/images/garden_inspiration_3_1793380692004.jpg" alt="Vertical Wall" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                <img src="/images/garden_inspiration_3_1793380692004.jpg" alt="Vertical Wall" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 text-sm">
                   <h4 className="font-serif font-bold">Vertical Living</h4>

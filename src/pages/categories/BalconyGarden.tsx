@@ -16,7 +16,7 @@ export const BalconyGarden = () => {
         <Container>
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
              <div className="relative aspect-video overflow-hidden shadow-2xl">
-                <img src="/src/assets/images/garden_balcony_inspiration_1793379117661.jpg" alt="Balcony Garden" className="w-full h-full object-cover" />
+                <img src="/images/garden_balcony_inspiration_1793379117661.jpg" alt="Balcony Garden" className="w-full h-full object-cover" />
              </div>
              <div>
                 <span className="inline-block text-sage font-bold tracking-[0.3em] uppercase text-[10px] mb-6">Urban Retreats</span>
@@ -66,10 +66,10 @@ export const BalconyGarden = () => {
               </div>
               <div className="grid grid-cols-2 gap-4">
                  <div className="aspect-[3/4] bg-stone-100 overflow-hidden shadow-xl">
-                    <img src="/src/assets/images/plant_bougainvillea_1793380565116.jpg" alt="Inspiration" className="w-full h-full object-cover" />
+                    <img src="/images/plant_bougainvillea_1793380565116.jpg" alt="Inspiration" className="w-full h-full object-cover" />
                  </div>
                  <div className="aspect-[3/4] bg-stone-100 overflow-hidden shadow-xl mt-12">
-                    <img src="/src/assets/images/plant_hibiscus_1793380567170.jpg" alt="Inspiration" className="w-full h-full object-cover" />
+                    <img src="/images/plant_hibiscus_1793380567170.jpg" alt="Inspiration" className="w-full h-full object-cover" />
                  </div>
               </div>
            </div>

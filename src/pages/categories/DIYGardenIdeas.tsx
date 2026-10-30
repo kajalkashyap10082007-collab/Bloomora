@@ -59,7 +59,7 @@ export const DIYGardenIdeas = () => {
                  </div>
               </div>
               <div className="aspect-square bg-stone-100 overflow-hidden shadow-2xl">
-                 <img src="/src/assets/images/contact_us_hero_1793380690307.jpg" alt="DIY Tools" className="w-full h-full object-cover" />
+                 <img src="/images/contact_us_hero_1793380690307.jpg" alt="DIY Tools" className="w-full h-full object-cover" />
               </div>
            </div>
         </Container>
