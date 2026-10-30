@@ -1,21 +1,21 @@
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://bloomora.in/</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://bloomora.in/plants</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bloomora.in/blog</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://bloomora-gules.vercel.app/</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/plants</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/blog</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/about</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/contact</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/privacy-policy</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/disclaimer</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/indoor-plants</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/outdoor-plants</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/balcony-garden</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/terrace-garden</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/vegetable-gardening</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/flower-gardening</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/seasonal-gardening</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/diy-garden-ideas</loc></url>
+  <url><loc>https://bloomora-gules.vercel.app/plant-care</loc></url>
 </urlset>
+```
