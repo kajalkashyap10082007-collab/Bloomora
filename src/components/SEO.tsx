@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 
 interface SEOProps {
@@ -7,35 +8,46 @@ interface SEOProps {
   article?: boolean;
 }
 
-export const SEO = ({ title, description, image, article }: SEOProps) => {
+export const SEO = ({ title, description, image }: SEOProps) => {
   const siteName = 'Bloomora';
   const defaultTitle = 'Bloomora – Grow Your Happy Space';
-  const defaultDescription = 'Premium botanical platform for plant care, indoor gardening, and seasonal inspiration.';
+  const defaultDescription =
+    'Premium botanical platform for plant care, indoor gardening, and seasonal inspiration.';
+
   const siteUrl = window.location.origin;
   const fullTitle = title ? `${title} | ${siteName}` : defaultTitle;
 
+  const pathname = window.location.pathname;
+  const normalizedPath =
+    pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+
+  const canonicalUrl = `${siteUrl}${normalizedPath}`;
+
   useEffect(() => {
     document.title = fullTitle;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', description || defaultDescription);
-    }
 
-    // OpenGraph
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', fullTitle);
+    const updateMeta = (selector: string, attribute: string, value: string) => {
+      let element = document.querySelector(selector);
 
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) ogDescription.setAttribute('content', description || defaultDescription);
+      if (!element) {
+        element = document.createElement(
+          selector.startsWith('link') ? 'link' : 'meta'
+        );
+        document.head.appendChild(element);
+      }
 
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) ogImage.setAttribute('content', image || `${siteUrl}/og-image.jpg`);
+      element.setAttribute(attribute, value);
+    };
 
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute('content', window.location.href);
+    updateMeta('meta[name="description"]', 'content', description || defaultDescription);
+    updateMeta('link[rel="canonical"]', 'href', canonicalUrl);
 
-  }, [fullTitle, description, image]);
+    updateMeta('meta[property="og:title"]', 'content', fullTitle);
+    updateMeta('meta[property="og:description"]', 'content', description || defaultDescription);
+    updateMeta('meta[property="og:image"]', 'content', image || `${siteUrl}/og-image.jpg`);
+    updateMeta('meta[property="og:url"]', 'content', canonicalUrl);
+
+  }, [fullTitle, description, image, canonicalUrl]);
 
   return null;
 };
