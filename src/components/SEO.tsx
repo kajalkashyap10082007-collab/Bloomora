@@ -2,100 +2,118 @@
 import { useEffect } from 'react';
 
 interface SEOProps {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   image?: string;
   article?: boolean;
+  noIndex?: boolean;
+  schemaMarkup?: Record<string, unknown>;
 }
 
-export const SEO = ({ title, description, image, article }: SEOProps) => {
-  const siteName = 'Bloomora';
-  const siteUrl = 'https://bloomora-gules.vercel.app';
+const SITE_URL = 'https://bloomora-gules.vercel.app';
+const DEFAULT_IMAGE = `${SITE_URL}/images/hero_botanical_garden_1793379116515.jpg`;
 
-  const defaultTitle = 'Bloomora – Grow Your Happy Space';
+function setMeta(
+  attribute: 'name' | 'property',
+  key: string,
+  content: string
+) {
+  let element = document.head.querySelector<HTMLMetaElement>(
+    `meta[${attribute}="${key}"]`
+  );
 
-  const defaultDescription =
-    'Discover indoor plants, plant care guides, gardening ideas and seasonal inspiration with Bloomora.';
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
 
-  const fullTitle = title ? `${title} | ${siteName}` : defaultTitle;
-  const metaDescription = description || defaultDescription;
+  element.setAttribute('content', content);
+}
 
-  const pathname = window.location.pathname;
-  const normalizedPath =
-    pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+function setCanonical(url: string) {
+  let link = document.head.querySelector<HTMLLinkElement>(
+    'link[rel="canonical"]'
+  );
 
-  const canonicalUrl = `${siteUrl}${normalizedPath}`;
-  const imageUrl = image || `${siteUrl}/og-image.jpg`;
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'canonical';
+    document.head.appendChild(link);
+  }
 
+  link.href = url;
+}
+
+export const SEO = ({
+  title,
+  description,
+  image,
+  article = false,
+  noIndex = false,
+  schemaMarkup,
+}: SEOProps) => {
   useEffect(() => {
-    document.title = fullTitle;
+    const cleanPath =
+      window.location.pathname.replace(/\/+$/, '') || '/';
 
-    const updateMeta = (
-      selector: string,
-      tagName: string,
-      attribute: string,
-      value: string
-    ) => {
-      let element = document.querySelector(selector);
+    const canonicalUrl = `${SITE_URL}${cleanPath}`;
+    const pageTitle = title.includes('Bloomora')
+      ? title
+      : `${title} | Bloomora`;
 
-      if (!element) {
-        element = document.createElement(tagName);
-        document.head.appendChild(element);
-      }
+    const imageUrl =
+      image && image.startsWith('http')
+        ? image
+        : image
+          ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`
+          : DEFAULT_IMAGE;
 
-      element.setAttribute(attribute, value);
+    document.title = pageTitle;
+
+    setMeta('name', 'description', description);
+    setMeta(
+      'name',
+      'robots',
+      noIndex
+        ? 'noindex, nofollow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+    );
+
+    setCanonical(canonicalUrl);
+
+    setMeta('property', 'og:type', article ? 'article' : 'website');
+    setMeta('property', 'og:site_name', 'Bloomora');
+    setMeta('property', 'og:title', pageTitle);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:url', canonicalUrl);
+    setMeta('property', 'og:image', imageUrl);
+    setMeta('property', 'og:image:alt', `${title} - Bloomora`);
+
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:title', pageTitle);
+    setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image', imageUrl);
+
+    const schemaId = 'bloomora-page-schema';
+    const existingSchema = document.getElementById(schemaId);
+
+    if (existingSchema) {
+      existingSchema.remove();
+    }
+
+    if (schemaMarkup) {
+      const script = document.createElement('script');
+      script.id = schemaId;
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(schemaMarkup);
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      document.getElementById(schemaId)?.remove();
     };
-
-    updateMeta(
-      'meta[name="description"]',
-      'meta',
-      'content',
-      metaDescription
-    );
-
-    updateMeta(
-      'link[rel="canonical"]',
-      'link',
-      'href',
-      canonicalUrl
-    );
-
-    updateMeta(
-      'meta[property="og:title"]',
-      'meta',
-      'content',
-      fullTitle
-    );
-
-    updateMeta(
-      'meta[property="og:description"]',
-      'meta',
-      'content',
-      metaDescription
-    );
-
-    updateMeta(
-      'meta[property="og:image"]',
-      'meta',
-      'content',
-      imageUrl
-    );
-
-    updateMeta(
-      'meta[property="og:url"]',
-      'meta',
-      'content',
-      canonicalUrl
-    );
-
-    updateMeta(
-      'meta[property="og:type"]',
-      'meta',
-      'content',
-      article ? 'article' : 'website'
-    );
-
-  }, [fullTitle, metaDescription, canonicalUrl, imageUrl, article]);
+  }, [title, description, image, article, noIndex, schemaMarkup]);
 
   return null;
 };

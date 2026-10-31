@@ -1,5 +1,5 @@
 
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   Calendar,
   Clock,
@@ -10,31 +10,30 @@ import {
   ArrowLeft,
   Quote,
 } from 'lucide-react';
+
 import { SEO } from '../components/SEO';
 import { Container } from '../components/ui/Base';
 import { articles } from '../data/articles';
+import { NotFound } from "./StaticPages";
+
+const SITE_URL = 'https://bloomora-gules.vercel.app';
 
 export const Article = () => {
   const { slug } = useParams();
   const article = articles.find((a) => a.slug === slug);
 
-  if (!article) return <Navigate to="/404" replace />;
+  if (!article) return <NotFound />;
 
   const relatedArticles = articles
     .filter((a) => a.category === article.category && a.id !== article.id)
     .slice(0, 2);
 
-  const articleUrl = `${window.location.origin}/blog/${article.slug}`;
+  const articleUrl = `${SITE_URL}/blog/${article.slug}`;
   const shareText = `Read "${article.title}" on Bloomora`;
 
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(articleUrl);
-      alert('Article link copied!');
-    } catch {
-      alert('Unable to copy the link. Please copy the page URL manually.');
-    }
-  };
+  const imageUrl = article.image.startsWith('http')
+    ? article.image
+    : `${SITE_URL}${article.image.startsWith('/') ? '' : '/'}${article.image}`;
 
   const formattedDate = new Date(article.publishedAt).toLocaleDateString(
     'en-IN',
@@ -45,6 +44,68 @@ export const Article = () => {
     }
   );
 
+  // BlogPosting and Breadcrumb Structured Data
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        headline: article.title,
+        description: article.excerpt,
+        image: [imageUrl],
+        datePublished: article.publishedAt,
+        dateModified: article.publishedAt,
+        author: {
+          '@type': 'Person',
+          name: article.author,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Bloomora',
+          url: SITE_URL,
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': articleUrl,
+        },
+        articleSection: article.category,
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: SITE_URL,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Blog',
+            item: `${SITE_URL}/blog`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: article.title,
+            item: articleUrl,
+          },
+        ],
+      },
+    ],
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(articleUrl);
+      alert('Article link copied!');
+    } catch {
+      alert('Unable to copy the link. Please copy the page URL manually.');
+    }
+  };
+
   return (
     <>
       <SEO
@@ -52,10 +113,10 @@ export const Article = () => {
         description={article.excerpt}
         image={article.image}
         article
+        schemaMarkup={articleSchema}
       />
 
       <article className="pb-32 bg-white">
-        {/* Editorial Hero */}
         <header className="relative pt-32 pb-20 bg-cream">
           <Container className="relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -112,7 +173,6 @@ export const Article = () => {
 
         <div className="editorial-container mt-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            {/* Sidebar Left: Share */}
             <aside
               className="hidden lg:block lg:col-span-1"
               aria-label="Share this article"
@@ -153,7 +213,6 @@ export const Article = () => {
               </div>
             </aside>
 
-            {/* Main Content */}
             <div className="lg:col-span-7 lg:col-start-2">
               <div className="prose prose-stone prose-lg max-w-none">
                 <p className="text-xl text-stone-600 leading-relaxed mb-12 italic border-l-4 border-sage pl-8 font-serif">
@@ -178,7 +237,6 @@ export const Article = () => {
                 </div>
               </div>
 
-              {/* Related Articles */}
               {relatedArticles.length > 0 && (
                 <section
                   className="mt-24 pt-12 border-t border-stone-200"
@@ -218,7 +276,6 @@ export const Article = () => {
               )}
             </div>
 
-            {/* Sidebar Right: Signup */}
             <aside className="lg:col-span-3 lg:col-start-10">
               <div className="sticky top-40 bg-white border border-stone-100 p-8 shadow-sm">
                 <h2 className="text-lg font-serif font-bold text-forest mb-4">

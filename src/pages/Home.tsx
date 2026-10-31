@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
@@ -24,8 +23,8 @@ export const Home = () => {
   return (
     <>
       <SEO
-        title="Indoor Plants, Gardening Tips & Plant Care"
-        description="Discover indoor plants, expert plant care guides, balcony gardening ideas and practical tips to create your own beautiful green space with Bloomora."
+        title="Indoor Plants, Plant Care Tips & Gardening Ideas"
+        description="Explore indoor plants, practical plant care tips, balcony gardening ideas and outdoor gardening guides. Create your own beautiful green space with Bloomora."
         image="https://bloomora-gules.vercel.app/og-image.jpg"
       />
 
@@ -40,18 +39,19 @@ export const Home = () => {
                 transition={{ duration: 0.8 }}
               >
                 <span className="inline-block text-sage font-bold tracking-[0.3em] uppercase text-[10px] mb-6">
-                  Bloomora · Established 2026
+                  Bloomora · Grow Your Happy Space
                 </span>
 
                 <h1 className="text-6xl md:text-8xl font-serif font-bold text-forest mb-8 leading-[0.9]">
-                  Bring <br />
-                  <span className="text-sage italic">Nature</span> <br />
-                  Home.
+                  Discover <br />
+                  <span className="text-sage italic">Indoor Plants</span> <br />
+                  & Gardening.
                 </h1>
 
                 <p className="text-stone-500 text-lg mb-10 max-w-md leading-relaxed border-l-2 border-sage/30 pl-6">
-                  Discover beautiful plants, simple gardening tips and creative
-                  ways to grow your own green space in any urban setting.
+                  Explore beautiful indoor plants, discover practical plant
+                  care tips, and find inspiring balcony gardening ideas to
+                  create a healthy and beautiful green space at home.
                 </p>
 
                 <div className="flex flex-wrap gap-6">
@@ -79,10 +79,9 @@ export const Home = () => {
               >
                 <img
                   src="/images/hero_botanical_garden_1793379116515.jpg"
-                  alt="Lush green botanical garden with a variety of indoor and outdoor plants"
+                  alt="Beautiful botanical garden with lush indoor and outdoor plants"
                   fetchPriority="high"
                   decoding="async"
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-forest/10 mix-blend-multiply" />
@@ -95,17 +94,19 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Featured Categories */}
+      {/* Gardening Categories */}
       <section className="py-32 bg-white">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
             <div className="max-w-xl">
               <h2 className="text-5xl font-serif font-bold text-forest mb-6">
-                Curated Collections
+                Explore Gardening Categories
               </h2>
+
               <p className="text-stone-500">
-                Tailored guides for every corner of your life, from low-light
-                indoor sanctuaries to thriving rooftop orchards.
+                Discover indoor plants, outdoor gardening, balcony garden
+                ideas, terrace gardening, vegetable growing and seasonal
+                flower guides to make every space greener.
               </p>
             </div>
           </div>
@@ -123,10 +124,9 @@ export const Home = () => {
                   <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-stone-100">
                     <img
                       src={cat.image}
-                      alt={`${cat.name}: ${cat.description}`}
+                      alt={`${cat.name} gardening guide: ${cat.description}`}
                       loading="lazy"
                       decoding="async"
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
@@ -135,6 +135,7 @@ export const Home = () => {
                   <h3 className="text-2xl font-serif font-bold text-forest mb-2 group-hover:text-sage transition-colors">
                     {cat.name}
                   </h3>
+
                   <p className="text-stone-400 text-sm mb-4 line-clamp-2">
                     {cat.description}
                   </p>
@@ -154,11 +155,14 @@ export const Home = () => {
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-20">
             <Quote className="h-10 w-10 text-sage/40 mx-auto mb-8" />
+
             <h2 className="text-4xl md:text-5xl font-serif font-medium leading-tight">
-              "To plant a garden is to believe in tomorrow."
+              Beautiful Garden Ideas and Inspiration
             </h2>
-            <p className="mt-8 text-sage uppercase tracking-[0.3em] text-xs font-bold">
-              — Audrey Hepburn
+
+            <p className="mt-6 text-white/70">
+              Get inspired to bring more greenery into your home and
+              surroundings with creative garden designs.
             </p>
           </div>
 
@@ -171,11 +175,13 @@ export const Home = () => {
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
+
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
               <div className="absolute bottom-8 left-8">
-                <h4 className="text-2xl font-serif font-bold">
+                <h3 className="text-2xl font-serif font-bold">
                   The Minimalist Retreat
-                </h4>
+                </h3>
                 <p className="text-white/60 text-sm">
                   Modern lines meeting organic life.
                 </p>
@@ -186,28 +192,32 @@ export const Home = () => {
               <div className="relative group overflow-hidden">
                 <img
                   src="/images/garden_inspiration_2_1793380692478.jpg"
-                  alt="Beautiful cottage garden with a peaceful garden path"
+                  alt="Cottage garden design with a peaceful garden path and flowers"
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
                 <div className="absolute bottom-6 left-6 text-sm">
-                  <h4 className="font-serif font-bold">Wildflower Paths</h4>
+                  <h3 className="font-serif font-bold">Wildflower Paths</h3>
                 </div>
               </div>
 
               <div className="relative group overflow-hidden">
                 <img
                   src="/images/garden_inspiration_3_1793380692004.jpg"
-                  alt="Vertical garden wall covered with lush green plants"
+                  alt="Vertical garden wall decorated with lush green plants"
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
                 <div className="absolute bottom-6 left-6 text-sm">
-                  <h4 className="font-serif font-bold">Vertical Living</h4>
+                  <h3 className="font-serif font-bold">Vertical Living</h3>
                 </div>
               </div>
             </div>
@@ -223,8 +233,9 @@ export const Home = () => {
               <span className="text-sage font-bold tracking-widest uppercase text-[10px] mb-2 block">
                 The Essentials
               </span>
+
               <h2 className="text-5xl font-serif font-bold text-forest">
-                Popular Plants
+                Popular Indoor Plants for Your Home
               </h2>
             </div>
 
@@ -232,7 +243,7 @@ export const Home = () => {
               to="/plants"
               className="link-premium text-xs font-bold uppercase tracking-widest text-forest"
             >
-              Browse Directory
+              Browse Plant Directory
             </Link>
           </div>
 
@@ -252,14 +263,16 @@ export const Home = () => {
               <span className="text-sage font-bold tracking-widest uppercase text-[10px] mb-4 block">
                 Personalized Advice
               </span>
+
               <h2 className="text-5xl font-serif font-bold text-forest mb-8 leading-tight">
-                Which plant is <br />
-                <span className="text-sage italic">right for you?</span>
+                Find the Right Plant <br />
+                <span className="text-sage italic">for Your Home</span>
               </h2>
+
               <p className="text-stone-500 text-lg mb-10 leading-relaxed">
-                Take our 2-minute quiz to discover the perfect botanical
-                companions for your unique home environment and gardening
-                experience.
+                Take our 2-minute plant finder quiz to discover plants that
+                match your home environment, available light, space and
+                gardening experience.
               </p>
 
               <div className="space-y-6 mb-10">
@@ -274,17 +287,18 @@ export const Home = () => {
                   },
                   {
                     title: 'Expert Curation',
-                    desc: 'Handpicked from our database of 12+ species.',
+                    desc: 'Explore suitable plants from our collection.',
                   },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="h-6 w-6 rounded-full bg-sage/10 text-sage flex items-center justify-center shrink-0">
                       <Sprout className="h-3 w-3" />
                     </div>
+
                     <div>
-                      <h4 className="font-bold text-sm text-forest">
+                      <h3 className="font-bold text-sm text-forest">
                         {item.title}
-                      </h4>
+                      </h3>
                       <p className="text-xs text-stone-400">{item.desc}</p>
                     </div>
                   </div>
@@ -297,7 +311,7 @@ export const Home = () => {
         </Container>
       </section>
 
-      {/* Latest Journal */}
+      {/* Latest Gardening Articles */}
       <section className="py-32 bg-stone-50">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
@@ -305,8 +319,9 @@ export const Home = () => {
               <span className="text-sage font-bold tracking-widest uppercase text-[10px] mb-2 block">
                 The Journal
               </span>
+
               <h2 className="text-5xl font-serif font-bold text-forest">
-                Gardening Stories
+                Latest Gardening Tips and Stories
               </h2>
             </div>
 
@@ -329,15 +344,19 @@ export const Home = () => {
       {/* Newsletter */}
       <section className="py-32 bg-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-cream -skew-x-12 translate-x-20 -z-10" />
+
         <Container>
           <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
             <Leaf className="h-12 w-12 text-sage mb-8" />
+
             <h2 className="text-5xl font-serif font-bold text-forest mb-8 leading-tight">
               Grow With Us
             </h2>
+
             <p className="text-stone-500 text-lg mb-12 max-w-lg leading-relaxed">
-              Join our botanical community for monthly seasonal guides, plant
-              care secrets, and exclusive editorial content.
+              Join our botanical community for seasonal gardening guides,
+              plant care ideas and inspiring content to help you grow a
+              greener space.
             </p>
 
             <form
@@ -351,6 +370,7 @@ export const Home = () => {
                 className="flex-grow bg-white border border-stone-200 px-6 py-4 text-sm focus:outline-none focus:border-forest transition-all"
                 required
               />
+
               <button type="submit" className="btn-premium whitespace-nowrap">
                 Join Now
               </button>
@@ -364,6 +384,7 @@ export const Home = () => {
               >
                 <Instagram className="h-3 w-3" /> Instagram
               </a>
+
               <a
                 href="#"
                 aria-label="Facebook"

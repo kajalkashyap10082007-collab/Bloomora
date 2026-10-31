@@ -1,5 +1,5 @@
 
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   Sun,
   Droplets,
@@ -16,19 +16,85 @@ import { SEO } from '../components/SEO';
 import { Container } from '../components/ui/Base';
 import { PlantCard } from '../components/PlantCard';
 import { plants } from '../data/plants';
+import { NotFound } from "./StaticPages";
+
+const SITE_URL = 'https://bloomora-gules.vercel.app';
 
 export const PlantDetails = () => {
   const { slug } = useParams();
   const plant = plants.find((p) => p.slug === slug);
 
-  if (!plant) return <Navigate to="/404" replace />;
+  if (!plant) return <NotFound />;
 
   const relatedPlants = plants
     .filter((p) => p.category === plant.category && p.id !== plant.id)
     .slice(0, 3);
 
-  const siteUrl = 'https://bloomora-gules.vercel.app';
-  const plantUrl = `${siteUrl}/plants/${plant.slug}`;
+  const plantUrl = `${SITE_URL}/plants/${plant.slug}`;
+
+  const description =
+    `Learn how to grow and care for ${plant.commonName} (${plant.scientificName}). ` +
+    `Explore sunlight, watering, soil, temperature and propagation tips with Bloomora.`;
+
+  const imageUrl = plant.image.startsWith('http')
+    ? plant.image
+    : `${SITE_URL}${plant.image.startsWith('/') ? '' : '/'}${plant.image}`;
+
+  // Plant Article and Breadcrumb Structured Data
+  const plantSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        headline: `${plant.commonName} Plant Care Guide`,
+        description,
+        image: [imageUrl],
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': plantUrl,
+        },
+        author: {
+          '@type': 'Organization',
+          name: 'Bloomora',
+          url: SITE_URL,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Bloomora',
+          url: SITE_URL,
+        },
+        about: {
+          '@type': 'Thing',
+          name: plant.commonName,
+          alternateName: plant.scientificName,
+        },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: SITE_URL,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Plants',
+            item: `${SITE_URL}/plants`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: plant.commonName,
+            item: plantUrl,
+          },
+        ],
+      },
+    ],
+  };
 
   const handleShare = async () => {
     const shareData = {
@@ -58,12 +124,12 @@ export const PlantDetails = () => {
     <>
       <SEO
         title={`${plant.commonName} Plant Care Guide`}
-        description={`Learn how to grow and care for ${plant.commonName} (${plant.scientificName}). Explore sunlight, watering, soil, temperature and propagation tips with Bloomora.`}
+        description={description}
         image={plant.image}
         article
+        schemaMarkup={plantSchema}
       />
 
-      {/* Editorial Header */}
       <section className="pt-20 pb-32 bg-cream">
         <Container>
           <div className="mb-12">
@@ -71,7 +137,10 @@ export const PlantDetails = () => {
               to="/plants"
               className="group inline-flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-stone-400 hover:text-forest transition-colors"
             >
-              <ArrowLeft className="h-3 w-3 group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft
+                className="h-3 w-3 group-hover:-translate-x-1 transition-transform"
+                aria-hidden="true"
+              />
               Back to Directory
             </Link>
           </div>
@@ -154,7 +223,6 @@ export const PlantDetails = () => {
         </Container>
       </section>
 
-      {/* Detailed Care Grid */}
       <section className="py-32 bg-white">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-100 border border-stone-100 overflow-hidden mb-24">
@@ -173,9 +241,9 @@ export const PlantDetails = () => {
                 <div className="h-10 w-10 text-sage mb-6" aria-hidden="true">
                   {item.icon}
                 </div>
-                <h4 className="text-[10px] uppercase font-bold tracking-widest text-stone-400 mb-4">
+                <h2 className="text-[10px] uppercase font-bold tracking-widest text-stone-400 mb-4">
                   {item.label}
-                </h4>
+                </h2>
                 <p className="text-stone-600 text-sm leading-relaxed">
                   {item.value}
                 </p>
@@ -229,7 +297,6 @@ export const PlantDetails = () => {
         </Container>
       </section>
 
-      {/* Related Plants */}
       <section className="py-32 bg-stone-50 border-t border-stone-200">
         <Container>
           <div className="flex items-end justify-between mb-16">
