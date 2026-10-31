@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bloomora.in/sitemap.xml
+Sitemap: https://bloomora-gules.vercel.app/sitemap.xml
