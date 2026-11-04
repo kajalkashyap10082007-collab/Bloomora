@@ -11,7 +11,8 @@ interface SEOProps {
 }
 
 const SITE_URL = 'https://bloomora-gules.vercel.app';
-const DEFAULT_IMAGE = `${SITE_URL}/images/hero_botanical_garden_1793379116515.jpg`;
+const SITE_NAME = 'Bloomora';
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 function setMeta(
   attribute: 'name' | 'property',
@@ -58,20 +59,19 @@ export const SEO = ({
       window.location.pathname.replace(/\/+$/, '') || '/';
 
     const canonicalUrl = `${SITE_URL}${cleanPath}`;
-    const pageTitle = title.includes('Bloomora')
-      ? title
-      : `${title} | Bloomora`;
 
-    const imageUrl =
-      image && image.startsWith('http')
-        ? image
-        : image
-          ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`
-          : DEFAULT_IMAGE;
+    const pageTitle = title.toLowerCase().includes('bloomora')
+      ? title
+      : `${title} | ${SITE_NAME}`;
+
+    const imageUrl = image
+      ? new URL(image, SITE_URL).toString()
+      : DEFAULT_IMAGE;
 
     document.title = pageTitle;
 
     setMeta('name', 'description', description);
+
     setMeta(
       'name',
       'robots',
@@ -82,25 +82,26 @@ export const SEO = ({
 
     setCanonical(canonicalUrl);
 
+    // Open Graph metadata
     setMeta('property', 'og:type', article ? 'article' : 'website');
-    setMeta('property', 'og:site_name', 'Bloomora');
+    setMeta('property', 'og:site_name', SITE_NAME);
     setMeta('property', 'og:title', pageTitle);
     setMeta('property', 'og:description', description);
     setMeta('property', 'og:url', canonicalUrl);
     setMeta('property', 'og:image', imageUrl);
-    setMeta('property', 'og:image:alt', `${title} - Bloomora`);
+    setMeta('property', 'og:image:alt', `${title} - ${SITE_NAME}`);
 
+    // Twitter metadata
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', pageTitle);
     setMeta('name', 'twitter:description', description);
     setMeta('name', 'twitter:image', imageUrl);
+    setMeta('name', 'twitter:image:alt', `${title} - ${SITE_NAME}`);
 
+    // Structured data
     const schemaId = 'bloomora-page-schema';
-    const existingSchema = document.getElementById(schemaId);
 
-    if (existingSchema) {
-      existingSchema.remove();
-    }
+    document.getElementById(schemaId)?.remove();
 
     if (schemaMarkup) {
       const script = document.createElement('script');

@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Sun,
@@ -16,13 +17,48 @@ import { SEO } from '../components/SEO';
 import { Container } from '../components/ui/Base';
 import { PlantCard } from '../components/PlantCard';
 import { plants } from '../data/plants';
-import { NotFound } from "./StaticPages";
+import { NotFound } from './StaticPages';
 
 const SITE_URL = 'https://bloomora-gules.vercel.app';
 
 export const PlantDetails = () => {
   const { slug } = useParams();
   const plant = plants.find((p) => p.slug === slug);
+
+  const [isBookmarked, setIsBookmarked] = useState(() => {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem('bloomora_saved_plants') || '[]'
+      ) as string[];
+
+      return slug ? saved.includes(slug) : false;
+    } catch {
+      return false;
+    }
+  });
+
+  const handleBookmark = () => {
+    if (!slug) return;
+
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem('bloomora_saved_plants') || '[]'
+      ) as string[];
+
+      const updated = isBookmarked
+        ? saved.filter((item) => item !== slug)
+        : [...saved, slug];
+
+      localStorage.setItem(
+        'bloomora_saved_plants',
+        JSON.stringify(updated)
+      );
+
+      setIsBookmarked(!isBookmarked);
+    } catch {
+      alert('Unable to save this plant. Please try again.');
+    }
+  };
 
   if (!plant) return <NotFound />;
 
@@ -48,6 +84,15 @@ export const PlantDetails = () => {
         '@type': 'Article',
         headline: `${plant.commonName} Plant Care Guide`,
         description,
+        articleSection: plant.category,
+        inLanguage: 'en-IN',
+        keywords: [
+          plant.commonName,
+          plant.scientificName,
+          'plant care',
+          'watering guide',
+          'indoor gardening',
+        ],
         image: [imageUrl],
         mainEntityOfPage: {
           '@type': 'WebPage',
@@ -68,7 +113,6 @@ export const PlantDetails = () => {
           name: plant.commonName,
           alternateName: plant.scientificName,
         },
-        inLanguage: 'en',
       },
       {
         '@type': 'BreadcrumbList',
@@ -125,7 +169,7 @@ export const PlantDetails = () => {
       <SEO
         title={`${plant.commonName} Plant Care Guide`}
         description={description}
-        image={plant.image}
+        image={imageUrl}
         article
         schemaMarkup={plantSchema}
       />
@@ -171,11 +215,22 @@ export const PlantDetails = () => {
 
                 <button
                   type="button"
-                  aria-label={`Bookmark ${plant.commonName}`}
-                  title="Bookmark feature coming soon"
+                  onClick={handleBookmark}
+                  aria-label={
+                    isBookmarked
+                      ? `Remove ${plant.commonName} from bookmarks`
+                      : `Bookmark ${plant.commonName}`
+                  }
+                  aria-pressed={isBookmarked}
+                  title={isBookmarked ? 'Remove bookmark' : 'Save plant'}
                   className="p-3 bg-white text-stone-400 hover:text-forest transition-colors shadow-sm rounded-full"
                 >
-                  <Bookmark className="h-5 w-5" aria-hidden="true" />
+                  <Bookmark
+                    className={`h-5 w-5 ${
+                      isBookmarked ? 'fill-sage text-sage' : ''
+                    }`}
+                    aria-hidden="true"
+                  />
                 </button>
               </div>
 

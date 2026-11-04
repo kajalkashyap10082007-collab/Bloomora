@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
@@ -20,6 +21,37 @@ import { articles } from '../data/articles';
 import { categories } from '../data/categories';
 
 export const Home = () => {
+    const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterMessage, setNewsletterMessage] = useState('');
+
+  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const email = newsletterEmail.trim().toLowerCase();
+
+    try {
+      const savedEmails = JSON.parse(
+        localStorage.getItem('bloomora_newsletter_subscribers') || '[]'
+      ) as string[];
+
+      if (savedEmails.includes(email)) {
+        setNewsletterMessage('You are already subscribed!');
+        return;
+      }
+
+      savedEmails.push(email);
+
+      localStorage.setItem(
+        'bloomora_newsletter_subscribers',
+        JSON.stringify(savedEmails)
+      );
+
+      setNewsletterMessage('Thank you for joining our botanical community!');
+      setNewsletterEmail('');
+    } catch {
+      setNewsletterMessage('Something went wrong. Please try again.');
+    }
+  };
   return (
     <>
       <SEO

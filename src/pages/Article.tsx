@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Calendar,
@@ -19,15 +19,83 @@ import { NotFound } from "./StaticPages";
 const SITE_URL = 'https://bloomora-gules.vercel.app';
 
 export const Article = () => {
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+const [newsletterMessage, setNewsletterMessage] = useState('');
+
+const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  try {
+    const savedSubscribers = JSON.parse(
+      localStorage.getItem('bloomora_newsletter_subscribers') || '[]'
+    );
+
+    const email = newsletterEmail.trim().toLowerCase();
+
+    if (savedSubscribers.includes(email)) {
+      setNewsletterMessage('You are already subscribed!');
+      return;
+    }
+
+    savedSubscribers.push(email);
+
+    localStorage.setItem(
+      'bloomora_newsletter_subscribers',
+      JSON.stringify(savedSubscribers)
+    );
+
+    setNewsletterMessage('Thank you for subscribing!');
+    setNewsletterEmail('');
+  } catch {
+    setNewsletterMessage('Unable to subscribe. Please try again.');
+  }
+};
   const { slug } = useParams();
   const article = articles.find((a) => a.slug === slug);
 
   if (!article) return <NotFound />;
 
-  const relatedArticles = articles
-    .filter((a) => a.category === article.category && a.id !== article.id)
-    .slice(0, 2);
+ const relatedArticleSlugs: Record<string, string[]> = {
+  'best-indoor-plants-beginners-india': [
+    'low-maintenance-plants-india',
+    'indoor-plant-problems-solutions',
+  ],
+  'small-balcony-garden-ideas': [
+    'grow-tomatoes-in-pots',
+    'seasonal-gardening-india',
+  ],
+  'grow-tomatoes-in-pots': [
+    'small-balcony-garden-ideas',
+    'seasonal-gardening-india',
+  ],
+  'low-maintenance-plants-india': [
+    'best-indoor-plants-beginners-india',
+    'indoor-plant-problems-solutions',
+  ],
+  'homemade-organic-fertilizer': [
+    'seasonal-gardening-india',
+    'indoor-plant-problems-solutions',
+  ],
+  'plants-sunlight-guide': [
+    'best-indoor-plants-beginners-india',
+    'low-maintenance-plants-india',
+  ],
+  'indoor-plant-problems-solutions': [
+    'plants-sunlight-guide',
+    'low-maintenance-plants-india',
+  ],
+  'seasonal-gardening-india': [
+    'small-balcony-garden-ideas',
+    'grow-tomatoes-in-pots',
+  ],
+};
 
+const relatedSlugs = relatedArticleSlugs[article.slug] ?? [];
+
+const relatedArticles = relatedSlugs
+  .map((slug) => articles.find((a) => a.slug === slug))
+  .filter((a): a is (typeof articles)[number] => Boolean(a))
+  .slice(0, 2);
   const articleUrl = `${SITE_URL}/blog/${article.slug}`;
   const shareText = `Read "${article.title}" on Bloomora`;
 
@@ -56,9 +124,9 @@ export const Article = () => {
         datePublished: article.publishedAt,
         dateModified: article.publishedAt,
         author: {
-          '@type': 'Person',
-          name: article.author,
-        },
+  '@type': 'Organization',
+  name: article.author,
+},
         publisher: {
           '@type': 'Organization',
           name: 'Bloomora',

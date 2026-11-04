@@ -1,3 +1,4 @@
+
 export interface Plant {
   id: string;
   name: string;
@@ -22,22 +23,22 @@ export interface Plant {
 export const plants: Plant[] = [
   {
     id: '1',
-    name: 'Sansevieria',
+    name: 'Snake Plant',
     commonName: 'Snake Plant',
     scientificName: 'Dracaena trifasciata',
     category: 'indoor',
     light: 'low',
     water: 'low',
     difficulty: 'beginner',
-    description: 'One of the most resilient indoor plants, known for its architectural leaves and ability to thrive in low light.',
+    description: 'Discover the Snake Plant, a low-maintenance indoor plant with upright architectural leaves. It tolerates low light and needs infrequent watering.',
     image: '/images/plant_snake_plant_luxury_1793379117019.jpg',
     slug: 'snake-plant',
     care: {
-      sunlight: 'Thrives in low to bright indirect light. Can even handle some direct sun.',
-      watering: 'Water only when the soil is completely dry. Overwatering is the biggest enemy.',
-      soil: 'Well-draining succulent or cactus mix.',
-      temperature: 'Prefers 15°C to 30°C. Avoid cold drafts.',
-      propagation: 'By leaf cuttings or dividing the rhizomes.'
+      sunlight: 'Grows in low to bright indirect light. Can tolerate some direct sunlight.',
+      watering: 'Water when the soil has dried out completely. Avoid overwatering.',
+      soil: 'Use a well-draining succulent or cactus potting mix.',
+      temperature: 'Prefers temperatures between 15°C and 30°C. Protect from cold drafts.',
+      propagation: 'Propagate through leaf cuttings or division of rhizomes.'
     }
   },
   {
@@ -49,15 +50,15 @@ export const plants: Plant[] = [
     light: 'medium',
     water: 'medium',
     difficulty: 'beginner',
-    description: 'A popular tropical plant with large, iconic fenestrated leaves that bring a jungle vibe to any space.',
+    description: 'Monstera deliciosa is a popular tropical indoor plant known for its large split leaves. It adds a lush tropical look to homes and indoor gardens.',
     image: '/images/plant_monstera_deliciosa_1793380569079.jpg',
     slug: 'monstera-deliciosa',
     care: {
-      sunlight: 'Bright indirect light is best. Too much sun can burn the leaves.',
+      sunlight: 'Bright indirect light is ideal. Avoid prolonged harsh direct sunlight.',
       watering: 'Water when the top 2 inches of soil feel dry.',
-      soil: 'Peat-based potting mix with perlite for drainage.',
-      temperature: 'Prefers humid environments and temperatures between 18°C and 30°C.',
-      propagation: 'Stem cuttings with at least one node and an aerial root.'
+      soil: 'Use an airy, well-draining potting mix with perlite.',
+      temperature: 'Prefers warm conditions between 18°C and 30°C.',
+      propagation: 'Propagate using stem cuttings containing at least one node.'
     }
   },
   {
@@ -69,15 +70,15 @@ export const plants: Plant[] = [
     light: 'high',
     water: 'low',
     difficulty: 'intermediate',
-    description: 'A vibrant climbing shrub known for its colorful papery bracts. Ideal for sunny balconies and terraces in India.',
+    description: 'Bougainvillea is a colorful flowering shrub with papery bracts. It is popular in Indian gardens, sunny balconies and terraces.',
     image: '/images/plant_bougainvillea_1793380565116.jpg',
     slug: 'bougainvillea',
     care: {
-      sunlight: 'Needs full sun (at least 6 hours) to bloom profusely.',
-      watering: 'Water deeply when the top soil is dry. Drought-tolerant once established.',
-      soil: 'Well-draining, slightly acidic soil.',
-      temperature: 'Thrives in hot, tropical climates. Sensitive to frost.',
-      propagation: 'Semi-hardwood cuttings.'
+      sunlight: 'Needs at least 6 hours of direct sunlight for good flowering.',
+      watering: 'Water deeply when the soil begins to dry. Avoid waterlogging.',
+      soil: 'Use well-draining soil.',
+      temperature: 'Thrives in warm weather and needs protection from frost.',
+      propagation: 'Can be propagated through stem cuttings.'
     }
   },
   {
@@ -89,35 +90,35 @@ export const plants: Plant[] = [
     light: 'high',
     water: 'low',
     difficulty: 'beginner',
-    description: 'A succulent known for its medicinal properties and ease of care.',
+    description: 'Aloe Vera is a popular succulent with fleshy leaves. It is easy to maintain and grows well in bright spaces with minimal watering.',
     image: '/images/plant_aloe_vera_1793380565672.jpg',
     slug: 'aloe-vera',
     care: {
-      sunlight: 'Bright direct or indirect light.',
-      watering: 'Water deeply every 2-3 weeks, allowing soil to dry completely.',
-      soil: 'Cactus or succulent potting mix.',
-      temperature: '13°C to 27°C.',
-      propagation: 'By removing "pups" (offsets) from the base.'
+      sunlight: 'Prefers bright light and can tolerate some direct sunlight.',
+      watering: 'Water only when the soil has dried completely. Reduce watering during cooler months.',
+      soil: 'Use a fast-draining cactus or succulent potting mix.',
+      temperature: 'Generally grows well in temperatures between 13°C and 27°C.',
+      propagation: 'Propagate by separating offsets, commonly called pups.'
     }
   },
   {
     id: '5',
-    name: 'Money Plant',
-    commonName: 'Pothos',
+    name: 'Pothos',
+    commonName: 'Money Plant',
     scientificName: 'Epipremnum aureum',
     category: 'indoor',
     light: 'low',
     water: 'medium',
     difficulty: 'beginner',
-    description: 'A fast-growing vine that is incredibly easy to grow and very popular in Indian households.',
+    description: 'Money Plant, also known as Pothos, is a popular indoor climbing vine in Indian homes. It is adaptable, easy to grow and suitable for pots or hanging baskets.',
     image: '/images/plant_pothos_1793380565764.jpg',
     slug: 'pothos',
     care: {
-      sunlight: 'Low to bright indirect light.',
-      watering: 'Water when top inch of soil is dry. Can also grow in water.',
-      soil: 'General purpose potting soil.',
-      temperature: '15°C to 30°C.',
-      propagation: 'Stem cuttings in water or soil.'
+      sunlight: 'Grows in low to bright indirect light.',
+      watering: 'Water when the top inch of soil feels dry. Avoid keeping the soil constantly wet.',
+      soil: 'Use a general-purpose, well-draining potting mix.',
+      temperature: 'Prefers temperatures between 15°C and 30°C.',
+      propagation: 'Propagate through stem cuttings in water or soil.'
     }
   },
   {
@@ -129,15 +130,15 @@ export const plants: Plant[] = [
     light: 'low',
     water: 'medium',
     difficulty: 'beginner',
-    description: 'Elegant white blooms and dark green leaves. Known for "telling" you when it needs water by drooping.',
+    description: 'Peace Lily is a beautiful indoor plant with dark green foliage and elegant white flowers. Its leaves may droop when it needs water.',
     image: '/images/plant_peace_lily_1793380566704.jpg',
     slug: 'peace-lily',
     care: {
-      sunlight: 'Low to medium indirect light.',
-      watering: 'Keep soil moist but not soggy. Mist leaves occasionally.',
-      soil: 'Rich, well-draining soil.',
-      temperature: '18°C to 27°C.',
-      propagation: 'Division during repotting.'
+      sunlight: 'Prefers low to medium indirect light.',
+      watering: 'Keep the soil lightly moist but never waterlogged.',
+      soil: 'Use rich, well-draining potting soil.',
+      temperature: 'Prefers temperatures between 18°C and 27°C.',
+      propagation: 'Propagate through division when repotting.'
     }
   },
   {
@@ -149,35 +150,35 @@ export const plants: Plant[] = [
     light: 'high',
     water: 'medium',
     difficulty: 'intermediate',
-    description: 'A beautiful feathery palm that adds a tropical touch and acts as a natural humidifier.',
+    description: 'Areca Palm is a tropical indoor palm with soft, feathery leaves. It brings a fresh green look to living rooms and bright indoor spaces.',
     image: '/images/plant_areca_palm_1793380567326.jpg',
     slug: 'areca-palm',
     care: {
-      sunlight: 'Bright indirect light. Direct sun can yellow the leaves.',
-      watering: 'Keep soil moist in spring/summer, allow to dry slightly in winter.',
-      soil: 'Peat-based potting mix.',
-      temperature: '18°C to 24°C.',
-      propagation: 'By seeds or division.'
+      sunlight: 'Prefers bright indirect light. Avoid harsh afternoon sunlight.',
+      watering: 'Water when the upper layer of soil begins to dry. Avoid waterlogging.',
+      soil: 'Use a well-draining, peat-based potting mix.',
+      temperature: 'Prefers warm conditions, generally around 18°C to 24°C.',
+      propagation: 'Can be propagated through division or seeds.'
     }
   },
   {
     id: '8',
     name: 'Jade Plant',
-    commonName: 'Money Tree',
+    commonName: 'Jade Plant',
     scientificName: 'Crassula ovata',
     category: 'indoor',
     light: 'high',
     water: 'low',
     difficulty: 'beginner',
-    description: 'A miniature tree-like succulent that is said to bring good luck and prosperity.',
+    description: 'Jade Plant is a tree-like succulent with thick leaves and sturdy stems. It is popular as a decorative indoor plant and is associated with good luck.',
     image: '/images/plant_jade_plant_1793380566814.jpg',
     slug: 'jade-plant',
     care: {
-      sunlight: 'Full sun to bright indirect light.',
-      watering: 'Water when soil is dry. Avoid getting water on leaves.',
-      soil: 'Succulent or cactus mix.',
-      temperature: '18°C to 24°C.',
-      propagation: 'Leaf or stem cuttings.'
+      sunlight: 'Prefers bright light and can tolerate direct morning sunlight.',
+      watering: 'Water when the soil has dried out completely.',
+      soil: 'Use a well-draining cactus or succulent mix.',
+      temperature: 'Grows well in moderate to warm temperatures.',
+      propagation: 'Propagate through leaf or stem cuttings.'
     }
   },
   {
@@ -189,75 +190,75 @@ export const plants: Plant[] = [
     light: 'high',
     water: 'high',
     difficulty: 'intermediate',
-    description: 'Classic Indian garden plant with large, colorful trumpet-shaped flowers.',
+    description: 'Hibiscus, commonly called Gudhal in India, is a popular flowering garden plant with large, colorful blooms. It grows best in sunny outdoor spaces.',
     image: '/images/plant_hibiscus_1793380567170.jpg',
     slug: 'hibiscus',
     care: {
-      sunlight: 'Full sun is essential for blooming.',
-      watering: 'Needs consistent watering. Do not let soil dry out completely.',
-      soil: 'Well-draining, fertile soil.',
-      temperature: 'Warm, tropical climates.',
-      propagation: 'Stem cuttings.'
+      sunlight: 'Needs plenty of direct sunlight for healthy growth and flowering.',
+      watering: 'Water regularly and keep the soil evenly moist without waterlogging.',
+      soil: 'Use fertile, well-draining soil.',
+      temperature: 'Prefers warm conditions and protection from cold weather.',
+      propagation: 'Can be propagated through stem cuttings.'
     }
   },
   {
     id: '10',
-    name: 'Zamioculcas Zamiifolia',
+    name: 'ZZ Plant',
     commonName: 'ZZ Plant',
     scientificName: 'Zamioculcas zamiifolia',
     category: 'indoor',
     light: 'low',
     water: 'low',
     difficulty: 'beginner',
-    description: 'Extremely tough plant with waxy, dark green leaves. Can survive months of neglect.',
+    description: 'ZZ Plant is a hardy indoor plant with glossy, dark green leaves. It tolerates low-light conditions and requires relatively little watering.',
     image: '/images/plant_zz_plant_1793380567970.jpg',
     slug: 'zz-plant',
     care: {
-      sunlight: 'Low to bright indirect light. Very adaptable.',
-      watering: 'Water only when soil is dry. Drought-tolerant.',
-      soil: 'Well-draining potting mix.',
-      temperature: '15°C to 24°C.',
-      propagation: 'Leaf cuttings or division.'
+      sunlight: 'Grows in low to bright indirect light.',
+      watering: 'Allow the soil to dry before watering again.',
+      soil: 'Use a well-draining potting mix.',
+      temperature: 'Prefers warm indoor temperatures.',
+      propagation: 'Can be propagated through leaf cuttings or division.'
     }
   },
   {
     id: '11',
-    name: 'Curry Leaf',
+    name: 'Curry Leaf Plant',
     commonName: 'Kadi Patta',
     scientificName: 'Murraya koenigii',
     category: 'outdoor',
     light: 'high',
     water: 'medium',
     difficulty: 'intermediate',
-    description: 'A must-have for Indian kitchens. An aromatic small tree that thrives in warm climates.',
+    description: 'Curry Leaf Plant is an aromatic small tree commonly grown in Indian homes. Its fresh leaves are widely used in everyday cooking.',
     image: '/images/plant_curry_leaf_1793380568112.jpg',
     slug: 'curry-leaf',
     care: {
-      sunlight: 'Full sun to partial shade.',
-      watering: 'Regular watering, but do not allow soil to become waterlogged.',
-      soil: 'Fertile, well-draining soil.',
-      temperature: 'Thrives in warm weather. Protect from frost.',
-      propagation: 'By seeds or stem cuttings.'
+      sunlight: 'Prefers full sunlight to partial shade.',
+      watering: 'Water regularly while allowing excess water to drain.',
+      soil: 'Use fertile, well-draining soil.',
+      temperature: 'Grows best in warm weather. Protect from frost.',
+      propagation: 'Can be propagated through seeds or stem cuttings.'
     }
   },
   {
     id: '12',
-    name: 'Tomato',
+    name: 'Tomato Plant',
     commonName: 'Tamatar',
     scientificName: 'Solanum lycopersicum',
     category: 'outdoor',
     light: 'high',
     water: 'high',
     difficulty: 'beginner',
-    description: 'Rewarding to grow in pots. Provides fresh, organic tomatoes for your home.',
+    description: 'Tomato is a rewarding vegetable plant for home gardens and containers. Grow it in a sunny spot to enjoy fresh tomatoes at home.',
     image: '/images/blog_tomato_gardening_1793379117970.jpg',
     slug: 'tomato',
     care: {
-      sunlight: 'At least 6-8 hours of direct sun.',
-      watering: 'Regular, consistent watering at the base of the plant.',
-      soil: 'Rich, loamy soil with compost.',
-      temperature: '18°C to 30°C.',
-      propagation: 'By seeds.'
+      sunlight: 'Needs around 6 to 8 hours of direct sunlight daily.',
+      watering: 'Water consistently at the base of the plant. Avoid irregular watering.',
+      soil: 'Use fertile, well-draining soil enriched with compost.',
+      temperature: 'Grows well in moderate to warm conditions.',
+      propagation: 'Usually grown from seeds.'
     }
   }
 ];

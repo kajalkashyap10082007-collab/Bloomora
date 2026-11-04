@@ -54,6 +54,8 @@ export const SearchPage = () => {
     [normalizedQuery]
   );
 
+  const totalResults = plantResults.length + articleResults.length;
+
   return (
     <>
       <SEO
@@ -69,27 +71,30 @@ export const SearchPage = () => {
               Search Bloomora
             </h1>
 
-            <div className="relative">
+            <div role="search" className="relative">
+              <label htmlFor="bloomora-search" className="sr-only">
+                Search plants and gardening articles
+              </label>
+
               <Search
                 className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-stone-300"
                 aria-hidden="true"
               />
 
               <input
-                autoFocus
+                id="bloomora-search"
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search plants, articles, guides..."
-                aria-label="Search plants and gardening articles"
-                className="w-full bg-white border border-stone-200 pl-16 pr-8 py-5 text-xl rounded-sm focus:outline-none focus:border-forest shadow-sm"
+                className="w-full bg-white border border-stone-200 pl-16 pr-8 py-5 text-xl rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:border-forest shadow-sm"
               />
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-20" aria-label="Search results">
         <Container>
           {!normalizedQuery ? (
             <div className="text-center py-20 text-stone-300">
@@ -101,6 +106,10 @@ export const SearchPage = () => {
             </div>
           ) : (
             <div className="space-y-24">
+              <p className="sr-only" role="status" aria-live="polite">
+                {totalResults} results found for {query}.
+              </p>
+
               {plantResults.length > 0 && (
                 <div>
                   <h2 className="text-xs font-bold text-stone-400 uppercase tracking-[0.2em] mb-10 pb-2 border-b border-stone-100 w-fit">
@@ -129,14 +138,13 @@ export const SearchPage = () => {
                 </div>
               )}
 
-              {plantResults.length === 0 &&
-                articleResults.length === 0 && (
-                  <div className="text-center py-20 bg-stone-50">
-                    <p className="text-stone-500 italic">
-                      No results found for "{query}". Try a different search term.
-                    </p>
-                  </div>
-                )}
+              {totalResults === 0 && (
+                <div className="text-center py-20 bg-stone-50" role="status">
+                  <p className="text-stone-500 italic">
+                    No results found for "{query}". Try a different search term.
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </Container>

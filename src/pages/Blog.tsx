@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ArrowRight } from 'lucide-react';
@@ -10,38 +9,36 @@ import { articles } from '../data/articles';
 const categories = [
   'All Entries',
   'Indoor Plants',
-  'Outdoor Plants',
-  'Plant Care',
+  'Balcony Garden',
   'Vegetable Gardening',
-  'DIY Ideas',
+  'Plant Care',
+  'DIY Garden Ideas',
+  'Seasonal Gardening',
 ];
-
-const categoryKeywords: Record<string, string[]> = {
-  'Indoor Plants': ['indoor'],
-  'Outdoor Plants': ['outdoor'],
-  'Plant Care': ['plant care', 'care'],
-  'Vegetable Gardening': ['vegetable', 'vegetables', 'tomato'],
-  'DIY Ideas': ['diy', 'homemade'],
-};
 
 export const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Entries');
   const [searchQuery, setSearchQuery] = useState('');
 
   const featuredArticle = articles[0];
-  const remainingArticles = articles.slice(1);
 
-  const filteredArticles = remainingArticles.filter((article) => {
-    const matchesSearch = `${article.title} ${article.excerpt} ${article.category}`
-      .toLowerCase()
-      .includes(searchQuery.trim().toLowerCase());
+  // Show the featured article separately only on the default journal view.
+  const showFeatured =
+    selectedCategory === 'All Entries' && searchQuery.trim() === '';
 
-    const keywords = categoryKeywords[selectedCategory];
+  const articlesToFilter = showFeatured ? articles.slice(1) : articles;
+
+  const filteredArticles = articlesToFilter.filter((article) => {
+    const query = searchQuery.trim().toLowerCase();
+
+    const matchesSearch =
+      `${article.title} ${article.excerpt} ${article.category}`
+        .toLowerCase()
+        .includes(query);
+
     const matchesCategory =
       selectedCategory === 'All Entries' ||
-      (keywords?.some((keyword) =>
-        article.category.toLowerCase().includes(keyword)
-      ) ?? false);
+      article.category === selectedCategory;
 
     return matchesSearch && matchesCategory;
   });
@@ -76,7 +73,7 @@ export const Blog = () => {
       </header>
 
       {/* Featured Article */}
-      {featuredArticle && (
+      {showFeatured && featuredArticle && (
         <section className="py-20 bg-white" aria-label="Featured article">
           <Container>
             <Link
@@ -191,9 +188,11 @@ export const Blog = () => {
               <h2 className="text-2xl font-serif font-bold text-forest mb-4">
                 No articles found
               </h2>
+
               <p className="text-stone-500 mb-6">
                 Try another search term or choose a different topic.
               </p>
+
               <button
                 type="button"
                 onClick={() => {
