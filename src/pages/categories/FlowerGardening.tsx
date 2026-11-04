@@ -4,7 +4,8 @@ import { SEO } from '../../components/SEO';
 import { Container } from '../../components/ui/Base';
 import { PlantCard } from '../../components/PlantCard';
 import { plants } from '../../data/plants';
-import { Sparkles, Palette, Calendar } from 'lucide-react';
+import { articles } from '../../data/articles';
+import { Sparkles, Palette, Calendar, BookOpen, ArrowRight } from 'lucide-react';
 
 export const FlowerGardening = () => {
   const flowerPlants = plants.filter(
@@ -12,6 +13,12 @@ export const FlowerGardening = () => {
       p.slug === 'bougainvillea' ||
       p.slug === 'hibiscus' ||
       p.slug === 'peace-lily'
+  );
+
+  const relatedArticles = articles.filter(
+    (article) =>
+      article.category === 'Seasonal Gardening' ||
+      article.category === 'Plant Care'
   );
 
   const pageUrl =
@@ -60,8 +67,8 @@ export const FlowerGardening = () => {
   return (
     <>
       <SEO
-        title="Flower Gardening & Seasonal Blooms"
-        description="Explore flowering plants, seasonal blooms, and flower gardening tips. Learn about pruning, color combinations, and year-round garden care."
+        title="Flower Gardening – Flower Plants & Seasonal Bloom Tips"
+        description="Discover flowering plants and learn flower gardening at home. Explore seasonal blooms, pruning, deadheading, and practical flower care tips."
         schemaMarkup={schemaMarkup}
       />
 
@@ -79,9 +86,9 @@ export const FlowerGardening = () => {
               </h1>
 
               <p className="text-stone-500 text-lg leading-relaxed max-w-md">
-                Add vibrant colors and natural fragrances to your home. From
-                classic roses to exotic tropicals, discover how to keep your
-                garden blooming all year.
+                Bring vibrant colors and natural beauty to your home. Discover
+                flowering plants and learn how to care for seasonal blooms
+                with the right sunlight, watering, and pruning.
               </p>
             </div>
 
@@ -90,6 +97,8 @@ export const FlowerGardening = () => {
                 src="/images/flower_gardening_hero_1793379948427.jpg"
                 alt="Colorful flower garden filled with blooming ornamental plants"
                 className="w-full h-full object-cover"
+                loading="eager"
+                fetchPriority="high"
               />
             </div>
           </div>
@@ -102,13 +111,14 @@ export const FlowerGardening = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
               <div className="space-y-8">
                 <h2 className="text-4xl font-serif font-bold text-forest">
-                  The Art of the Bloom.
+                  The Art of the Bloom
                 </h2>
 
                 <p className="text-stone-500 leading-relaxed">
-                  Successful flower gardening requires a balance of timing,
-                  nutrition, and correct pruning. Learn our editorial secrets
-                  for a professional floral display.
+                  Healthy flowering plants need suitable sunlight, balanced
+                  nutrition, regular watering, and timely pruning. Understand
+                  their growing needs to enjoy beautiful blooms throughout
+                  their flowering seasons.
                 </p>
 
                 <div className="space-y-6">
@@ -116,10 +126,10 @@ export const FlowerGardening = () => {
                     <Palette className="h-6 w-6 text-sage shrink-0" />
                     <p className="text-sm text-stone-600">
                       <span className="font-bold text-forest">
-                        Color Theory:
+                        Color Combinations:
                       </span>{' '}
-                      Combine complementary colors for high-impact visual
-                      appeal.
+                      Combine complementary flower colors to create an
+                      attractive and balanced garden.
                     </p>
                   </div>
 
@@ -127,9 +137,10 @@ export const FlowerGardening = () => {
                     <Calendar className="h-6 w-6 text-sage shrink-0" />
                     <p className="text-sm text-stone-600">
                       <span className="font-bold text-forest">
-                        Succession Planting:
+                        Seasonal Planning:
                       </span>{' '}
-                      Plan your sowing so as one flower fades, another begins.
+                      Choose flowering plants according to your local climate
+                      and their natural blooming seasons.
                     </p>
                   </div>
 
@@ -139,8 +150,8 @@ export const FlowerGardening = () => {
                       <span className="font-bold text-forest">
                         Deadheading:
                       </span>{' '}
-                      Removing spent blooms encourages the plant to produce
-                      more energy for new flowers.
+                      Remove faded flowers from suitable plants to keep them
+                      tidy and encourage further flowering where applicable.
                     </p>
                   </div>
                 </div>
@@ -151,6 +162,7 @@ export const FlowerGardening = () => {
                   src="/images/plant_hibiscus_1793380567170.jpg"
                   alt="Hibiscus flower blooming on a flowering garden plant"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -160,26 +172,82 @@ export const FlowerGardening = () => {
 
       <section className="py-32 bg-cream">
         <Container>
-          <div className="flex items-end justify-between mb-16">
-            <h2 className="text-4xl font-serif font-bold text-forest">
-              Our Favorite Blooms
-            </h2>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-sage text-xs font-bold uppercase tracking-widest">
+                Explore Plants
+              </span>
+              <h2 className="text-4xl font-serif font-bold text-forest mt-3">
+                Our Favorite Blooms
+              </h2>
+            </div>
 
             <Link
               to="/plants"
               className="link-premium text-xs font-bold uppercase tracking-widest text-forest"
             >
-              View All
+              View All Plants
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {flowerPlants.map((p) => (
-              <PlantCard key={p.id} plant={p} />
-            ))}
-          </div>
+          {flowerPlants.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+              {flowerPlants.map((plant) => (
+                <PlantCard key={plant.id} plant={plant} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-stone-500 py-12">
+              Flowering plants will be added to this collection soon.
+            </p>
+          )}
         </Container>
       </section>
+
+      {relatedArticles.length > 0 && (
+        <section className="py-24 bg-white">
+          <Container>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+              <div>
+                <span className="text-sage text-xs font-bold uppercase tracking-widest">
+                  Gardening Knowledge
+                </span>
+                <h2 className="text-4xl font-serif font-bold text-forest mt-3">
+                  Flower Care & Seasonal Guides
+                </h2>
+              </div>
+
+              <Link
+                to="/blog"
+                className="text-forest text-xs font-bold uppercase tracking-widest inline-flex items-center gap-2"
+              >
+                View All Articles <ArrowRight size={16} />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {relatedArticles.map((article) => (
+                <Link
+                  key={article.slug}
+                  to={`/blog/${article.slug}`}
+                  className="group border border-stone-100 p-8 hover:shadow-lg transition-all"
+                >
+                  <BookOpen className="text-sage mb-5" size={24} />
+                  <h3 className="text-xl font-serif font-bold text-forest mb-3 group-hover:text-sage transition-colors">
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-stone-500 leading-relaxed">
+                    {article.excerpt}
+                  </p>
+                  <span className="inline-flex items-center gap-2 mt-6 text-xs font-bold uppercase tracking-widest text-forest">
+                    Read Guide <ArrowRight size={14} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
     </>
   );
 };

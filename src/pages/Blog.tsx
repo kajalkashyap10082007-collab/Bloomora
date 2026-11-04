@@ -1,6 +1,8 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ArrowRight } from 'lucide-react';
+
 import { SEO } from '../components/SEO';
 import { Container } from '../components/ui/Base';
 import { BlogCard } from '../components/BlogCard';
@@ -22,7 +24,6 @@ export const Blog = () => {
 
   const featuredArticle = articles[0];
 
-  // Show the featured article separately only on the default journal view.
   const showFeatured =
     selectedCategory === 'All Entries' && searchQuery.trim() === '';
 
@@ -31,10 +32,10 @@ export const Blog = () => {
   const filteredArticles = articlesToFilter.filter((article) => {
     const query = searchQuery.trim().toLowerCase();
 
-    const matchesSearch =
-      `${article.title} ${article.excerpt} ${article.category}`
-        .toLowerCase()
-        .includes(query);
+    const searchableContent =
+      `${article.title} ${article.excerpt} ${article.category}`.toLowerCase();
+
+    const matchesSearch = searchableContent.includes(query);
 
     const matchesCategory =
       selectedCategory === 'All Entries' ||
@@ -46,8 +47,8 @@ export const Blog = () => {
   return (
     <>
       <SEO
-        title="Gardening Journal – Plant Care Tips & Gardening Ideas"
-        description="Explore Bloomora's gardening journal for indoor plant care, balcony garden inspiration, vegetable gardening tips, and practical guides for growing a greener home."
+        title="Gardening Blog – Indoor Plants, Plant Care & Garden Ideas"
+        description="Read Bloomora's gardening blog for indoor plant care guides, balcony garden ideas, vegetable gardening tips, and practical advice for growing healthy plants."
         image={featuredArticle?.image}
       />
 
@@ -65,8 +66,9 @@ export const Blog = () => {
             </h1>
 
             <p className="text-stone-500 text-lg max-w-lg mx-auto leading-relaxed">
-              A curated collection of gardening wisdom, from fundamental care
-              guides to advanced botanical studies.
+              Explore practical gardening guides, indoor plant care advice,
+              balcony gardening inspiration, and helpful tips for growing
+              healthier plants.
             </p>
           </div>
         </Container>
@@ -78,13 +80,13 @@ export const Blog = () => {
           <Container>
             <Link
               to={`/blog/${featuredArticle.slug}`}
-              className="group grid grid-cols-1 lg:grid-cols-12 gap-0 border border-stone-100 shadow-2xl overflow-hidden"
+              aria-label={`Read featured article: ${featuredArticle.title}`}
+              className="group grid grid-cols-1 lg:grid-cols-12 gap-0 border border-stone-100 shadow-2xl overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
             >
               <div className="lg:col-span-7 aspect-video lg:aspect-auto overflow-hidden">
                 <img
                   src={featuredArticle.image}
                   alt={`${featuredArticle.title} - featured gardening article`}
-                  referrerPolicy="no-referrer"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
@@ -124,7 +126,7 @@ export const Blog = () => {
       <section className="py-8 bg-stone-50 border-y border-stone-100 sticky top-20 z-30 overflow-x-auto">
         <Container>
           <div className="flex items-center gap-8 whitespace-nowrap min-w-max">
-            <span className="text-[10px] font-bold text-stone-300 uppercase tracking-widest">
+            <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">
               Browse Topics
             </span>
 
@@ -134,7 +136,7 @@ export const Blog = () => {
                 type="button"
                 onClick={() => setSelectedCategory(category)}
                 aria-pressed={selectedCategory === category}
-                className={`text-xs font-bold uppercase tracking-widest transition-colors ${
+                className={`text-xs font-bold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 ${
                   selectedCategory === category
                     ? 'text-forest'
                     : 'text-stone-400 hover:text-forest'
@@ -146,7 +148,7 @@ export const Blog = () => {
 
             <div className="ml-auto relative flex items-center">
               <Search
-                className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-300"
+                className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400"
                 aria-hidden="true"
               />
 
@@ -160,7 +162,7 @@ export const Blog = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search journal..."
-                className="bg-transparent border-b border-stone-200 pl-8 pr-4 py-2 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-forest w-64 transition-all"
+                className="bg-transparent border-b border-stone-200 pl-8 pr-4 py-2 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-forest focus-visible:ring-2 focus-visible:ring-sage w-64 transition-all"
               />
             </div>
           </div>
@@ -171,7 +173,7 @@ export const Blog = () => {
       <section className="py-32 bg-white" aria-label="Gardening articles">
         <Container>
           <div className="flex items-center justify-between mb-12">
-            <p className="text-xs text-stone-400" aria-live="polite">
+            <p className="text-xs text-stone-500" role="status" aria-live="polite">
               {filteredArticles.length}{' '}
               {filteredArticles.length === 1 ? 'article' : 'articles'} found
             </p>
@@ -199,7 +201,7 @@ export const Blog = () => {
                   setSearchQuery('');
                   setSelectedCategory('All Entries');
                 }}
-                className="text-xs font-bold uppercase tracking-widest text-sage hover:text-forest transition-colors"
+                className="text-xs font-bold uppercase tracking-widest text-sage hover:text-forest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
               >
                 Clear Filters
               </button>

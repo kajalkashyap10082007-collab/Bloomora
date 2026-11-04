@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, type FormEvent } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Calendar,
@@ -14,88 +15,97 @@ import {
 import { SEO } from '../components/SEO';
 import { Container } from '../components/ui/Base';
 import { articles } from '../data/articles';
-import { NotFound } from "./StaticPages";
+import { NotFound } from './StaticPages';
 
 const SITE_URL = 'https://bloomora-gules.vercel.app';
 
 export const Article = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
-const [newsletterMessage, setNewsletterMessage] = useState('');
+  const [newsletterMessage, setNewsletterMessage] = useState('');
 
-const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-
-  try {
-    const savedSubscribers = JSON.parse(
-      localStorage.getItem('bloomora_newsletter_subscribers') || '[]'
-    );
-
-    const email = newsletterEmail.trim().toLowerCase();
-
-    if (savedSubscribers.includes(email)) {
-      setNewsletterMessage('You are already subscribed!');
-      return;
-    }
-
-    savedSubscribers.push(email);
-
-    localStorage.setItem(
-      'bloomora_newsletter_subscribers',
-      JSON.stringify(savedSubscribers)
-    );
-
-    setNewsletterMessage('Thank you for subscribing!');
-    setNewsletterEmail('');
-  } catch {
-    setNewsletterMessage('Unable to subscribe. Please try again.');
-  }
-};
   const { slug } = useParams();
   const article = articles.find((a) => a.slug === slug);
 
   if (!article) return <NotFound />;
 
- const relatedArticleSlugs: Record<string, string[]> = {
-  'best-indoor-plants-beginners-india': [
-    'low-maintenance-plants-india',
-    'indoor-plant-problems-solutions',
-  ],
-  'small-balcony-garden-ideas': [
-    'grow-tomatoes-in-pots',
-    'seasonal-gardening-india',
-  ],
-  'grow-tomatoes-in-pots': [
-    'small-balcony-garden-ideas',
-    'seasonal-gardening-india',
-  ],
-  'low-maintenance-plants-india': [
-    'best-indoor-plants-beginners-india',
-    'indoor-plant-problems-solutions',
-  ],
-  'homemade-organic-fertilizer': [
-    'seasonal-gardening-india',
-    'indoor-plant-problems-solutions',
-  ],
-  'plants-sunlight-guide': [
-    'best-indoor-plants-beginners-india',
-    'low-maintenance-plants-india',
-  ],
-  'indoor-plant-problems-solutions': [
-    'plants-sunlight-guide',
-    'low-maintenance-plants-india',
-  ],
-  'seasonal-gardening-india': [
-    'small-balcony-garden-ideas',
-    'grow-tomatoes-in-pots',
-  ],
-};
+  const handleNewsletterSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-const relatedSlugs = relatedArticleSlugs[article.slug] ?? [];
+    try {
+      const savedSubscribers: string[] = JSON.parse(
+        localStorage.getItem('bloomora_newsletter_subscribers') || '[]'
+      );
 
-const relatedArticles = relatedSlugs
-  .map((slug) => articles.find((a) => a.slug === slug))
-  .filter((a): a is (typeof articles)[number] => Boolean(a))
-  .slice(0, 2);
+      const email = newsletterEmail.trim().toLowerCase();
+
+      if (!email) {
+        setNewsletterMessage('Please enter your email address.');
+        return;
+      }
+
+      if (savedSubscribers.includes(email)) {
+        setNewsletterMessage('You are already subscribed!');
+        return;
+      }
+
+      savedSubscribers.push(email);
+
+      localStorage.setItem(
+        'bloomora_newsletter_subscribers',
+        JSON.stringify(savedSubscribers)
+      );
+
+      setNewsletterMessage('Thank you for subscribing!');
+      setNewsletterEmail('');
+    } catch {
+      setNewsletterMessage('Unable to subscribe. Please try again.');
+    }
+  };
+
+  const relatedArticleSlugs: Record<string, string[]> = {
+    'best-indoor-plants-beginners-india': [
+      'low-maintenance-plants-india',
+      'indoor-plant-problems-solutions',
+    ],
+    'small-balcony-garden-ideas': [
+      'grow-tomatoes-in-pots',
+      'seasonal-gardening-india',
+    ],
+    'grow-tomatoes-in-pots': [
+      'small-balcony-garden-ideas',
+      'seasonal-gardening-india',
+    ],
+    'low-maintenance-plants-india': [
+      'best-indoor-plants-beginners-india',
+      'indoor-plant-problems-solutions',
+    ],
+    'homemade-organic-fertilizer': [
+      'seasonal-gardening-india',
+      'indoor-plant-problems-solutions',
+    ],
+    'plants-sunlight-guide': [
+      'best-indoor-plants-beginners-india',
+      'low-maintenance-plants-india',
+    ],
+    'indoor-plant-problems-solutions': [
+      'plants-sunlight-guide',
+      'low-maintenance-plants-india',
+    ],
+    'seasonal-gardening-india': [
+      'small-balcony-garden-ideas',
+      'grow-tomatoes-in-pots',
+    ],
+  };
+
+  const relatedSlugs = relatedArticleSlugs[article.slug] ?? [];
+
+  const relatedArticles = relatedSlugs
+    .map((relatedSlug) =>
+      articles.find((a) => a.slug === relatedSlug)
+    )
+    .filter((a): a is (typeof articles)[number] => Boolean(a))
+    .slice(0, 2);
+
   const articleUrl = `${SITE_URL}/blog/${article.slug}`;
   const shareText = `Read "${article.title}" on Bloomora`;
 
@@ -112,7 +122,6 @@ const relatedArticles = relatedSlugs
     }
   );
 
-  // BlogPosting and Breadcrumb Structured Data
   const articleSchema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -124,9 +133,9 @@ const relatedArticles = relatedSlugs
         datePublished: article.publishedAt,
         dateModified: article.publishedAt,
         author: {
-  '@type': 'Organization',
-  name: article.author,
-},
+          '@type': 'Organization',
+          name: article.author,
+        },
         publisher: {
           '@type': 'Organization',
           name: 'Bloomora',
@@ -137,7 +146,7 @@ const relatedArticles = relatedSlugs
           '@id': articleUrl,
         },
         articleSection: article.category,
-        inLanguage: 'en',
+        inLanguage: 'en-IN',
       },
       {
         '@type': 'BreadcrumbList',
@@ -179,7 +188,7 @@ const relatedArticles = relatedSlugs
       <SEO
         title={article.title}
         description={article.excerpt}
-        image={article.image}
+        image={imageUrl}
         article
         schemaMarkup={articleSchema}
       />
@@ -190,7 +199,7 @@ const relatedArticles = relatedSlugs
             <div className="max-w-4xl mx-auto text-center">
               <Link
                 to="/blog"
-                className="group inline-flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-stone-400 hover:text-forest transition-colors mb-12"
+                className="group inline-flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-stone-400 hover:text-forest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest transition-colors mb-12"
               >
                 <ArrowLeft
                   className="h-3 w-3 group-hover:-translate-x-1 transition-transform"
@@ -228,7 +237,7 @@ const relatedArticles = relatedSlugs
 
             <div className="aspect-[21/9] w-full overflow-hidden shadow-2xl">
               <img
-                src={article.image}
+                src={imageUrl}
                 alt={`${article.title} - gardening guide`}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
@@ -255,7 +264,7 @@ const relatedArticles = relatedSlugs
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Share article on Facebook"
-                  className="p-3 bg-stone-50 text-stone-400 hover:text-forest hover:bg-white hover:shadow-md transition-all rounded-full border border-stone-100"
+                  className="p-3 bg-stone-50 text-stone-400 hover:text-forest hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest transition-all rounded-full border border-stone-100"
                 >
                   <Facebook className="h-4 w-4" aria-hidden="true" />
                 </a>
@@ -265,7 +274,7 @@ const relatedArticles = relatedSlugs
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Share article on X"
-                  className="p-3 bg-stone-50 text-stone-400 hover:text-forest hover:bg-white hover:shadow-md transition-all rounded-full border border-stone-100"
+                  className="p-3 bg-stone-50 text-stone-400 hover:text-forest hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest transition-all rounded-full border border-stone-100"
                 >
                   <Twitter className="h-4 w-4" aria-hidden="true" />
                 </a>
@@ -274,7 +283,7 @@ const relatedArticles = relatedSlugs
                   type="button"
                   onClick={handleCopyLink}
                   aria-label="Copy article link"
-                  className="p-3 bg-stone-50 text-stone-400 hover:text-forest hover:bg-white hover:shadow-md transition-all rounded-full border border-stone-100"
+                  className="p-3 bg-stone-50 text-stone-400 hover:text-forest hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest transition-all rounded-full border border-stone-100"
                 >
                   <LinkIcon className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -322,7 +331,7 @@ const relatedArticles = relatedSlugs
                       <Link
                         key={rel.id}
                         to={`/blog/${rel.slug}`}
-                        className="group block"
+                        className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest"
                       >
                         <div className="aspect-video overflow-hidden mb-4 bg-stone-100">
                           <img
@@ -356,22 +365,40 @@ const relatedArticles = relatedSlugs
 
                 <form
                   className="space-y-4"
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={handleNewsletterSubmit}
                 >
-                  <label htmlFor="article-newsletter-email" className="sr-only">
+                  <label
+                    htmlFor="article-newsletter-email"
+                    className="sr-only"
+                  >
                     Email address
                   </label>
 
                   <input
                     id="article-newsletter-email"
                     type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Email Address"
-                    className="w-full bg-stone-50 border border-stone-100 px-4 py-3 text-xs focus:outline-none focus:border-forest"
+                    autoComplete="email"
+                    required
+                    className="w-full bg-stone-50 border border-stone-100 px-4 py-3 text-xs focus:outline-none focus:border-forest focus-visible:ring-2 focus-visible:ring-forest"
                   />
 
-                  <button type="submit" className="btn-premium w-full">
+                  <button
+                    type="submit"
+                    className="btn-premium w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest"
+                  >
                     Join Now
                   </button>
+
+                  <p
+                    className="text-xs text-stone-500"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    {newsletterMessage}
+                  </p>
                 </form>
 
                 <div className="mt-8 pt-8 border-t border-stone-100">

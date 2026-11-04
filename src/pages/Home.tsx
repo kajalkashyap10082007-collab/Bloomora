@@ -54,11 +54,11 @@ export const Home = () => {
   };
   return (
     <>
-      <SEO
-        title="Indoor Plants, Plant Care Tips & Gardening Ideas"
-        description="Explore indoor plants, practical plant care tips, balcony gardening ideas and outdoor gardening guides. Create your own beautiful green space with Bloomora."
-        image="https://bloomora-gules.vercel.app/og-image.jpg"
-      />
+     <SEO
+  title="Indoor Plants, Plant Care & Gardening Tips"
+  description="Discover indoor plants, practical plant care guides, balcony gardening ideas, and gardening tips to create a beautiful, healthy green space at home."
+  image="https://bloomora-gules.vercel.app/og-image.jpg"
+/>
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-cream">

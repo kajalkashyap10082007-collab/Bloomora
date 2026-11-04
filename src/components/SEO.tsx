@@ -64,9 +64,15 @@ export const SEO = ({
       ? title
       : `${title} | ${SITE_NAME}`;
 
-    const imageUrl = image
-      ? new URL(image, SITE_URL).toString()
-      : DEFAULT_IMAGE;
+    let imageUrl = DEFAULT_IMAGE;
+
+    try {
+      imageUrl = image
+        ? new URL(image, SITE_URL).toString()
+        : DEFAULT_IMAGE;
+    } catch {
+      imageUrl = DEFAULT_IMAGE;
+    }
 
     document.title = pageTitle;
 
@@ -107,7 +113,12 @@ export const SEO = ({
       const script = document.createElement('script');
       script.id = schemaId;
       script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(schemaMarkup);
+
+      script.textContent = JSON.stringify(schemaMarkup).replace(
+        /</g,
+        '\\u003c'
+      );
+
       document.head.appendChild(script);
     }
 
